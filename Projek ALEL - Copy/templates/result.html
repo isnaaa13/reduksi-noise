@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Perubahan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        h2 {
+            margin-bottom: -3%;
+        }
+
+        h3 {
+            margin-top: -1%;
+        }
+
+        .ori {
+            margin-bottom: 0%;
+        }
+
+        .image-container {
+            margin-top: 40px;
+        }
+
+        .flex-box {
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+        }
+
+        .margin-kiri {
+            margin-right: 5vw;
+        }
+
+        img {
+            max-width: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .psnr-value {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>HASIL</h1>
+    <h2 class="ori">Foto Asli: </h2>
+    <img src="{{ url_for('static', filename='upload/' + filename) }}" alt="Original Image">
+    <div class="flex-box">
+        <div class="image-container margin-kiri">
+            <h2>Noisy Gaussian</h2>
+            <img src="{{ url_for('static', filename='upload/noisy_gaussian_' + filename) }}" alt="Noisy Gaussian Image">
+            <h3>(PSNR: {{ psnr_gaussian }} dB)</h3>
+        </div>
+        <div class="image-container">
+            <h2>Noisy Salt and Pepper</h2>
+            <img src="{{ url_for('static', filename='upload/noisy_salt_pepper_' + filename) }}" alt="Noisy Salt and Pepper Image">
+            <h3>(PSNR: {{ psnr_salt_pepper }} dB)</h3>
+        </div>
+    </div>
+    <div class="flex-box">
+        <div class="image-container margin-kiri">
+            <h2>Noisy Speckle</h2>
+            <img src="{{ url_for('static', filename='upload/noisy_speckle_' + filename) }}" alt="Noisy Speckle Image">
+            <h3>(PSNR: {{ psnr_speckle }} dB)</h3>
+        </div>
+        <div class="image-container">
+            <h2>Noisy Poisson</h2>
+            <img src="{{ url_for('static', filename='upload/noisy_poisson_' + filename) }}" alt="Noisy Poisson Image">
+            <h3>(PSNR: {{ psnr_poisson }} dB)</h3>
+        </div>
+    </div>
+</body>
+</html>
